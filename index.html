@@ -177,12 +177,46 @@
 
     /* ===== COURSE CARD LAYOUT FIX ===== */
 
-    /* Responsive grid — cards never shrink below 220px */
+    /* Grid: 4 cols desktop → 2 cols tablet → 1 col mobile */
     .popular-courses-grid {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 20px !important;
+      margin-top: 36px !important;
+    }
+    @media (max-width: 1024px) {
+      .popular-courses-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 540px) {
+      .popular-courses-grid { grid-template-columns: 1fr !important; }
     }
 
-    /* Thumb image — fixed height, no overflow */
+    /* Slider item + dyn-list wrappers must not constrain width */
+    .popular-courses-grid .course-slider-item,
+    .popular-courses-grid .course-list-wrap,
+    .popular-courses-grid .course-list,
+    .popular-courses-grid .course-grid-item {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* Card itself */
+    .course-grid {
+      background: #fff !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 12px !important;
+      overflow: visible !important;   /* never clip text */
+      box-shadow: 0 1px 4px rgba(0,0,0,.06) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+    .course-grid:hover { box-shadow: 0 8px 28px rgba(13,45,94,.12) !important; transform: translateY(-3px); }
+
+    /* Thumb — clip the image, not the whole card */
+    .course-thumb { overflow: hidden !important; border-radius: 12px 12px 0 0 !important; }
     .course-thumb,
     .course-thumb .course-image-link,
     .course-thumb .w-inline-block { display: block !important; width: 100% !important; }
@@ -193,35 +227,34 @@
       display: block !important;
     }
 
-    /* Card body spacing */
-    .course-grid { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); height: 100%; display: flex !important; flex-direction: column !important; }
-    .course-content { padding: 16px !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
+    /* Card content area */
+    .course-content { padding: 14px !important; display: flex !important; flex-direction: column !important; flex: 1 !important; min-width: 0 !important; }
 
-    /* Category link — one line */
-    .course-cate-link { display: flex !important; align-items: center !important; gap: 2px !important; margin-bottom: 8px !important; text-decoration: none !important; }
-    .course-cate-label { font-size: 12px !important; color: #0d2d5e !important; font-weight: 700 !important; }
-    .course-cate { font-size: 12px !important; color: #0d2d5e !important; font-weight: 700 !important; }
+    /* Category label */
+    .course-cate-link { display: flex !important; align-items: center !important; gap: 2px !important; margin-bottom: 8px !important; text-decoration: none !important; flex-wrap: nowrap !important; }
+    .course-cate-label,
+    .course-cate { font-size: 11px !important; color: #0d2d5e !important; font-weight: 700 !important; white-space: nowrap !important; }
 
-    /* Title */
-    .course-title-wrap { margin-bottom: 12px !important; }
+    /* Title — wraps naturally, never clips */
+    .course-title-wrap { margin-bottom: 10px !important; overflow: visible !important; }
     .course-title-link { text-decoration: none !important; display: block !important; }
     .course-title-link h4.display-4,
     .course-title-link h4.display-3 {
-      font-size: 15px !important;
+      font-size: 14px !important;
       font-weight: 700 !important;
-      line-height: 1.35 !important;
+      line-height: 1.4 !important;
       color: #0d2d5e !important;
       margin: 0 !important;
       white-space: normal !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
 
-    /* Duration + Fee row — flex row with gap, allow wrap */
+    /* Duration + Fee — stacked rows so nothing squishes */
     .course-price-wrap {
       display: flex !important;
-      flex-direction: row !important;
-      flex-wrap: wrap !important;
-      gap: 6px 16px !important;
-      align-items: center !important;
+      flex-direction: column !important;
+      gap: 4px !important;
       margin-bottom: 10px !important;
     }
     .course-duration-block,
@@ -230,19 +263,10 @@
       flex-direction: row !important;
       align-items: center !important;
       gap: 4px !important;
-      white-space: nowrap !important;
     }
-    .course-label {
-      font-size: 12px !important;
-      color: #6b7280 !important;
-      font-weight: 500 !important;
-    }
-    .course-label.fw600 { font-weight: 700 !important; color: #0d2d5e !important; }
-    .course-label-value {
-      font-size: 12px !important;
-      color: #111 !important;
-      font-weight: 500 !important;
-    }
+    .course-label { font-size: 12px !important; color: #6b7280 !important; font-weight: 500 !important; }
+    .course-label.fw600 { font-weight: 700 !important; color: #374151 !important; }
+    .course-label-value { font-size: 12px !important; color: #111 !important; font-weight: 500 !important; }
     .course-label-value.fw600 { font-weight: 700 !important; color: #e85d26 !important; }
 
     /* Rating + Details row */
@@ -256,15 +280,9 @@
       border-top: 1px solid #f3f4f6 !important;
       gap: 8px !important;
     }
-    .course-rate-wrap {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      gap: 4px !important;
-    }
+    .course-rate-wrap { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 4px !important; }
     .course-action-wrap { flex-shrink: 0 !important; }
-    .link-button-4,
-    .link-button-5 {
+    .link-button-4, .link-button-5 {
       display: inline-flex !important;
       align-items: center !important;
       gap: 4px !important;
@@ -274,17 +292,8 @@
       text-decoration: none !important;
       white-space: nowrap !important;
     }
-    .link-button-4:hover,
-    .link-button-5:hover { color: #e85d26 !important; }
+    .link-button-4:hover, .link-button-5:hover { color: #e85d26 !important; }
     .link-arrow-icon-code svg { width: 10px !important; height: 10px !important; }
-
-    /* Responsive: 2 cols on tablet, 1 col on small mobile */
-    @media (max-width: 900px) {
-      .popular-courses-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    }
-    @media (max-width: 480px) {
-      .popular-courses-grid { grid-template-columns: 1fr !important; }
-    }
   </style>
   </head>
   <!--/$-->
@@ -1257,7 +1266,7 @@
         .team-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.09); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
         .team-card:hover { transform:translateY(-4px); box-shadow:0 10px 32px rgba(0,0,0,0.14); }
         .team-card .tc-photo { position:relative; width:100%; }
-        .team-card .tc-photo img { width:100%; height:260px; object-fit:cover; object-position:top center; display:block; }
+        .team-card .tc-photo img { width:100%; height:260px; object-fit:cover; object-position:center center; display:block; }
         .team-card .tc-badge { position:absolute; bottom:12px; left:14px; background:#22c55e; color:#fff; font-size:0.7rem; font-weight:700; padding:5px 13px; border-radius:20px; letter-spacing:0.02em; white-space:nowrap; }
         .team-card .tc-body { padding:20px 20px 22px; text-align:center; flex:1; display:flex; flex-direction:column; }
         .team-card .tc-name { font-size:1.15rem; font-weight:800; color:#0f172a; margin:0 0 4px; }
@@ -1281,7 +1290,7 @@
             <!-- Card 1: Neha Raj -->
             <div class="team-card">
               <div class="tc-photo">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=320&fit=crop&crop=top" alt="Neha Raj" />
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=320&fit=crop&crop=faces,center" alt="Neha Raj" />
                 <span class="tc-badge">4 Years of Experience</span>
               </div>
               <div class="tc-body">
@@ -1302,7 +1311,7 @@
             <!-- Card 2: A.Anitha -->
             <div class="team-card">
               <div class="tc-photo">
-                <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=320&fit=crop&crop=top" alt="A.Anitha" />
+                <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=320&fit=crop&crop=faces,center" alt="A.Anitha" />
                 <span class="tc-badge">10 Years of Experience</span>
               </div>
               <div class="tc-body">
@@ -1323,7 +1332,7 @@
             <!-- Card 3: Kanchan Sharma -->
             <div class="team-card">
               <div class="tc-photo">
-                <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=400&h=320&fit=crop&crop=top" alt="Kanchan Sharma" />
+                <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=400&h=320&fit=crop&crop=faces,center" alt="Kanchan Sharma" />
                 <span class="tc-badge">7 Years of Experience</span>
               </div>
               <div class="tc-body">
@@ -1344,7 +1353,7 @@
             <!-- Card 4: Swati Ramani -->
             <div class="team-card">
               <div class="tc-photo">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=320&fit=crop&crop=top" alt="Swati Ramani" />
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=320&fit=crop&crop=faces,center" alt="Swati Ramani" />
                 <span class="tc-badge">14 Years of Experience</span>
               </div>
               <div class="tc-body">
