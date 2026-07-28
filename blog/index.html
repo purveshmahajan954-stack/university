@@ -132,7 +132,29 @@
     .contact-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#8aa4c4;line-height:1.5}
     .contact-item svg{flex-shrink:0;margin-top:2px;color:#f5a623}
     .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 24px;text-align:center;font-size:13px;color:#6b89a8;max-width:1200px;margin:0 auto}
-    @media(max-width:768px){.footer-top{grid-template-columns:1fr}}
+    @media(max-width:900px){
+      .blog-wrap{grid-template-columns:1fr;gap:32px}
+      .sidebar{order:2}
+    }
+    @media(max-width:768px){
+      .footer-top{grid-template-columns:1fr;gap:28px}
+      .cta-strip{padding:36px 20px;border-radius:14px;margin:0 16px 48px}
+      .cta-strip h2{font-size:20px}
+      .hero{padding:56px 16px 64px}
+      .hero p{font-size:15px}
+      .blog-wrap{padding:40px 16px 48px}
+      .filter-bar{padding:12px 12px}
+      .filter-btn{padding:6px 12px;font-size:12px}
+      .featured-title{font-size:18px}
+      .featured-body{padding:20px}
+    }
+    @media(max-width:480px){
+      .blog-grid{grid-template-columns:1fr}
+      .hero h1{font-size:clamp(24px,7vw,36px)}
+      .filter-btn span{display:none}
+    }
+    *{min-width:0}
+    body{overflow-x:hidden}
   </style>
 </head>
 <body>

@@ -175,6 +175,89 @@
       .event-list-section .w-dyn-items { flex-direction: column !important; }
     }
 
+    /* ===== GLOBAL MOBILE OVERFLOW GUARD ===== */
+    *, *::before, *::after { min-width: 0; }
+
+    /* ===== HOME PAGE MOBILE FIXES ===== */
+
+    /* Fix negative margins on about section image that cause horizontal overflow */
+    .about-image-two { margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
+
+    /* CTA section — stack vertically, shrink padding */
+    @media (max-width: 768px) {
+      .call-to-action-section .container-default { padding: 0 16px !important; }
+      .call-content-block { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; text-align: center !important; }
+      .call-content-block .display-2 { font-size: 1.3rem !important; }
+    }
+
+    /* Section paddings on mobile */
+    @media (max-width: 600px) {
+      .container-default { padding-left: 14px !important; padding-right: 14px !important; }
+      section, .section { padding-top: 40px !important; padding-bottom: 40px !important; }
+      h2.display-12 { font-size: 1.2rem !important; white-space: normal !important; }
+    }
+
+    /* Counselling team grid: 4→2→1 col */
+    @media (max-width: 900px) {
+      div[style*="grid-template-columns:repeat(4,1fr)"],
+      div[style*="grid-template-columns: repeat(4,1fr)"],
+      div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 18px !important;
+      }
+    }
+    @media (max-width: 500px) {
+      div[style*="grid-template-columns:repeat(4,1fr)"],
+      div[style*="grid-template-columns: repeat(4,1fr)"],
+      div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      /* Team card section heading */
+      div[style*="text-align:center"] h2,
+      div[style*="text-align: center"] h2 { font-size: 1.4rem !important; }
+      div[style*="text-align:center"] p,
+      div[style*="text-align: center"] p { font-size: 0.9rem !important; }
+      /* Reduce photo height on mobile */
+      .team-card .tc-photo img { height: 200px !important; }
+      /* Counselling section padding */
+      div[style*="padding: 64px 20px 72px"],
+      div[style*="padding: 60px 20px"],
+      div[style*="padding: 50px 20px"] { padding: 36px 14px !important; }
+    }
+
+    /* Footer: force stack on mobile */
+    @media (max-width: 768px) {
+      .footer-top-area .container-default > div.flex { flex-direction: column !important; gap: 28px !important; }
+      .footer-widget-card { width: 100% !important; margin-bottom: 0 !important; }
+      .footer-logo { height: 60px !important; }
+      .footer-bottom-area { text-align: center; padding: 16px; font-size: 12px; }
+    }
+
+    /* Uni/counselling banner images */
+    @media (max-width: 600px) {
+      img[style*="max-width:1100px"],
+      img[style*="max-width: 1100px"] { border-radius: 8px !important; }
+      div[style*="padding: 50px 20px"] { padding: 24px 12px !important; }
+    }
+
+    /* Popular courses section on home page */
+    @media (max-width: 600px) {
+      .popular-courses-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    }
+
+    /* Testimonial / brand sections */
+    @media (max-width: 600px) {
+      .testimonial-with-slider-section .container-default,
+      .brand-section .container-default { padding: 0 14px !important; }
+    }
+
+    /* Hero search bar on small screens */
+    @media (max-width: 480px) {
+      .search-form-block, form[class*="search"] { flex-direction: column !important; }
+      .quick-tags-wrap, div[style*="display:flex"][style*="gap:12px"] { flex-wrap: wrap !important; gap: 8px !important; }
+    }
+
     /* ===== COURSE CARD LAYOUT FIX ===== */
 
     /* Grid: 4 cols desktop → 2 cols tablet → 1 col mobile */

@@ -75,7 +75,7 @@
     .section-divider{flex:1;height:1px;background:linear-gradient(to right,#e5e7eb,transparent)}
 
     /* ── Course Cards ── */
-    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-bottom:56px}
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-bottom:56px}
     .course-card{border-radius:16px;border:1px solid #e5e7eb;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .25s ease,box-shadow .25s ease;cursor:pointer}
     .course-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(13,45,94,.12)}
     .card-accent{height:5px}
@@ -116,6 +116,29 @@
     .contact-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#8aa4c4;line-height:1.5}
     .contact-item svg{flex-shrink:0;margin-top:2px;color:#f5a623}
     .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 24px;text-align:center;font-size:13px;color:#6b89a8;max-width:1200px;margin:0 auto}
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media(max-width:768px){
+      .footer-top{grid-template-columns:1fr;gap:28px}
+      .cta-strip{padding:36px 20px;border-radius:14px;margin:0 16px 48px}
+      .cta-strip h2{font-size:20px}
+      .cta-strip p{font-size:14px}
+      .cta-btn{padding:12px 24px;font-size:14px}
+      .hero{padding:56px 16px 64px}
+      .hero p{font-size:15px}
+      .section{padding:40px 16px 16px}
+      .filter-bar{padding:12px 12px}
+      .filter-btn{padding:7px 14px;font-size:12px}
+    }
+    @media(max-width:480px){
+      .cards-grid{grid-template-columns:1fr}
+      .hero h1{font-size:clamp(24px,7vw,36px)}
+      .hero-badges{gap:8px}
+      .hero-badge{font-size:12px;padding:6px 12px}
+    }
+    /* Prevent any element from causing horizontal scroll */
+    *{min-width:0}
+    body{overflow-x:hidden}
   </style>
 </head>
 <body>
