@@ -46,6 +46,101 @@
       window.__WEBFLOW_CURRENCY_SETTINGS = {"currencyCode":"USD","symbol":"$","decimal":".","fractionDigits":2,"group":",","template":"{{wf {\"path\":\"symbol\",\"type\":\"PlainText\"} }} {{wf {\"path\":\"amount\",\"type\":\"CommercePrice\"} }} {{wf {\"path\":\"currencyCode\",\"type\":\"PlainText\"} }}","hideDecimalForWholeNumbers":false};
     </script>
   <style>.w-webflow-badge { display: none !important; }</style>
+  <style>
+    /* ===== MOBILE RESPONSIVE ===== */
+
+    /* Team cards grid */
+    @media (max-width: 1024px) {
+      .team-card .tc-photo img { height: 220px; }
+    }
+    @media (max-width: 900px) {
+      /* Team cards: 2 columns on tablet */
+      div[style*="grid-template-columns:repeat(4,1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      /* Universities & counselling images */
+      div[style*="universities-banner"], div[style*="counselling-team"] { padding: 30px 12px !important; }
+    }
+    @media (max-width: 600px) {
+      /* Team cards: 1 column on mobile */
+      div[style*="grid-template-columns:repeat(4,1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+      }
+      /* Category cards */
+      .department-wrap { grid-template-columns: repeat(2,1fr) !important; }
+      /* Section paddings */
+      div[style*="padding: 60px 20px"], div[style*="padding: 64px 20px"], div[style*="padding: 50px 20px"] {
+        padding: 36px 14px !important;
+      }
+      /* Headings */
+      h2[style*="font-size:2rem"], h2[style*="font-size:1.9rem"], h2[style*="font-size:1.85rem"] {
+        font-size: 1.35rem !important;
+      }
+      /* Nav */
+      .flex.space-between.align-item-center { flex-wrap: wrap; }
+      /* Hero section text */
+      .display-1, .display-2 { font-size: 1.6rem !important; }
+      /* Container padding */
+      .container-default { padding-left: 14px !important; padding-right: 14px !important; }
+      /* Counselling section heading */
+      div[style*="text-align:center"] h2 { font-size: 1.3rem !important; }
+      div[style*="text-align:center"] p  { font-size: 0.9rem !important; }
+      /* Team card photo */
+      .tc-photo img { height: 200px !important; }
+    }
+
+    /* Tablet: nav & hero */
+    @media (max-width: 768px) {
+      .home-two-hero-section .container-default { flex-direction: column !important; }
+      .nav-menu-2 { flex-wrap: wrap; }
+      /* Department category: 2 cols */
+      .department-wrap { display: grid !important; grid-template-columns: repeat(2,1fr) !important; gap: 16px !important; }
+      .category-item-block { width: 100% !important; }
+      /* Course slider */
+      .course-grid-slider-section .container-default { overflow-x: auto; }
+      /* CTA section */
+      .call-content-block { flex-direction: column !important; gap: 20px !important; text-align: center; }
+      /* Testimonial */
+      .testimonial-with-slider-section .w-slider { touch-action: pan-y; }
+      /* Footer */
+      .footer-top-area .container-default > div { flex-direction: column !important; }
+      /* Brand section */
+      .brand-logo-block { overflow-x: auto; }
+      /* Universities/team image sections */
+      div[style*="padding: 60px 20px"] img[style*="max-width:1100px"],
+      div[style*="padding: 50px 20px"] img[style*="max-width:1100px"] {
+        border-radius: 8px !important;
+      }
+    }
+
+    /* Ensure images never overflow */
+    img { max-width: 100%; }
+
+    /* Horizontal scroll prevention */
+    body { overflow-x: hidden; }
+
+    /* Footer responsive */
+    @media (max-width: 768px) {
+      .footer-top-area .w-layout-grid,
+      .footer-top-area [class*="grid"] {
+        grid-template-columns: 1fr !important;
+      }
+      .footer-widget-card { margin-bottom: 24px; }
+      .footer-social-icon-wrap { justify-content: flex-start; }
+    }
+
+    /* About section */
+    @media (max-width: 768px) {
+      .home-about-section .container-default > div { flex-direction: column !important; }
+      .home-about-section img { width: 100% !important; }
+    }
+
+    /* Event section */
+    @media (max-width: 768px) {
+      .event-list-section .w-dyn-items { flex-direction: column !important; }
+    }
+  </style>
   </head>
   <!--/$-->
   <body>
