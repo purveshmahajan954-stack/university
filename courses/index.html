@@ -36,12 +36,20 @@
     .site-nav{background:#fff;box-shadow:0 1px 0 #eaecf0;position:sticky;top:0;z-index:100}
     .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
     .nav-logo img{height:40px;width:auto}
-    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;padding:0;margin:0}
-    .nav-links li{list-style:none}
-    .nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;color:#374151;text-decoration:none;transition:background .2s,color .2s}
-    .nav-links a:hover{background:#f3f4f6;color:#0d2d5e}
-    .nav-links a.active{background:#0d2d5e;color:#fff}
-    .nav-links a.active:hover{background:#0a2448}
+    .hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:8px;border-radius:8px;transition:background .2s}
+    .hamburger:hover{background:#f3f4f6}
+    .hamburger span{display:block;width:24px;height:2px;background:#0d2d5e;border-radius:2px;transition:transform .3s,opacity .3s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-dropdown{position:absolute;top:72px;right:0;left:0;background:#fff;border-top:1px solid #eaecf0;box-shadow:0 8px 24px rgba(0,0,0,.1);display:none;z-index:99}
+    .nav-dropdown.open{display:block}
+    .nav-dropdown ul{list-style:none;padding:12px 24px;margin:0;max-width:1200px;margin:0 auto}
+    .nav-dropdown li{list-style:none;border-bottom:1px solid #f3f4f6}
+    .nav-dropdown li:last-child{border-bottom:none}
+    .nav-dropdown a{display:block;padding:14px 8px;font-size:15px;font-weight:600;color:#374151;text-decoration:none;transition:color .2s}
+    .nav-dropdown a:hover{color:#0d2d5e}
+    .nav-dropdown a.active{color:#0d2d5e;font-weight:700}
 
     /* ── Hero ── */
     .hero{background:linear-gradient(135deg,#0d2d5e 0%,#1a4a8a 60%,#0d2d5e 100%);padding:80px 24px 90px;text-align:center;position:relative;overflow:hidden}
@@ -116,13 +124,18 @@
 <header class="site-nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="/logo.jpeg" alt="Logo" /></a>
-    <ul class="nav-links">
+    <button class="hamburger" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-dropdown" id="navDropdown">
+    <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/courses/" class="active">Courses</a></li>
       <li><a href="/university/">University</a></li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
-  </div>
+  </nav>
 </header>
 
 <!-- HERO -->
@@ -445,6 +458,20 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
   });
+});
+
+// Hamburger toggle
+const navToggle = document.getElementById('navToggle');
+const navDropdown = document.getElementById('navDropdown');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('open');
+  navDropdown.classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+  if (!navToggle.contains(e.target) && !navDropdown.contains(e.target)) {
+    navToggle.classList.remove('open');
+    navDropdown.classList.remove('open');
+  }
 });
 </script>
 </body>
