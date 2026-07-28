@@ -114,15 +114,26 @@
       }
     }
 
-    /* Hero section height reduction */
-    .home-two-hero-section { padding-top: 40px !important; padding-bottom: 40px !important; min-height: unset !important; }
-    .home-two-hero-image { max-height: 340px !important; width: auto !important; }
-    .hero-item-image-wrap { max-height: 340px !important; overflow: hidden !important; }
-    /* Fix Webflow animation: make hero content visible */
-    .hero-icon-block, .hero-title-wrap, .hero-excerpt-wrap, .hero-button-wrap, .hero-item-image-wrap { opacity: 1 !important; }
-    /* Reduce hero heading size */
-    .home-two-hero-section h1 { font-size: 2rem !important; line-height: 1.2 !important; }
-    .home-two-hero-section .excerpt-big { font-size: 0.95rem !important; line-height: 1.6 !important; }
+    /* Fix ALL Webflow animation opacity:0 — make everything visible */
+    [data-w-id] { opacity: 1 !important; transform: none !important; }
+
+    /* Hero layout override — block so CTA bar sits below content */
+    .home-two-hero-section { display: block !important; flex-direction: unset !important; }
+
+    /* Course icon grid hover */
+    .course-icon-card:hover { box-shadow: 0 6px 24px rgba(13,43,94,0.13) !important; border-color: #E85D26 !important; transform: translateY(-3px); }
+    .course-icon-card { transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s !important; }
+
+    /* Course icon grid responsive */
+    @media (max-width: 900px) { .course-icon-grid { grid-template-columns: repeat(4,1fr) !important; } }
+    @media (max-width: 600px) { .course-icon-grid { grid-template-columns: repeat(3,1fr) !important; } }
+    @media (max-width: 400px) { .course-icon-grid { grid-template-columns: repeat(2,1fr) !important; } }
+
+    /* Hero responsive */
+    @media (max-width: 768px) {
+      .home-two-hero-section > .container-default > div { flex-direction: column !important; }
+      .home-two-hero-section h1 { font-size: 1.7rem !important; }
+    }
 
     /* Ensure images never overflow */
     img { max-width: 100%; }
@@ -165,81 +176,7 @@
                 <nav role="navigation" class="nav-menu w-nav-menu">
                   <ul role="list" class="header-navigation-list">
                     <li class="navigation-list-item">
-                      <div data-hover="false" data-delay="0" class="nav-link-dropdown w-dropdown">
-                        <div class="dropdown-toggle w-dropdown-toggle">
-                          <div class="dropdown-text">
-                            Home
-                          </div>
-                          <div class="menu-dropdown-arrow-icon w-icon-dropdown-toggle">
-                          </div>
-                        </div>
-                        <nav class="dropdown-menu-list w-dropdown-list">
-                          <a href="/" aria-current="page" class="dropdown-menu-link w-dropdown-link w--current">                          Home V1
-</a>
-                          <a href="/home-two" class="dropdown-menu-link w-dropdown-link">                          Home V2
-</a>
-                          <a href="/home-three" class="dropdown-menu-link w-dropdown-link">                          Home V3
-</a>
-                        </nav>
-                      </div>
-                    </li>
-                    <li class="navigation-list-item">
-                      <div data-hover="false" data-delay="0" class="nav-link-dropdown w-dropdown">
-                        <div class="dropdown-toggle w-dropdown-toggle">
-                          <div class="dropdown-text">
-                            Pages
-                          </div>
-                          <div class="menu-dropdown-arrow-icon w-icon-dropdown-toggle">
-                          </div>
-                        </div>
-                        <nav class="dropdown-menu-list w-dropdown-list">
-                          <a href="/about-us-one" class="dropdown-menu-link w-dropdown-link">                          About One
-</a>
-                          <a href="/about-us-two" class="dropdown-menu-link w-dropdown-link">                          About Two
-</a>
-                          <a href="/event-pages/event-v1" class="dropdown-menu-link w-dropdown-link">                          Event One
-</a>
-                          <a href="/event-pages/event-v2" class="dropdown-menu-link w-dropdown-link">                          Event Two
-</a>
-                          <a href="/department" class="dropdown-menu-link w-dropdown-link">                          Department
-</a>
-                          <a href="/teacher/teacher" class="dropdown-menu-link w-dropdown-link">                          Teacher
-</a>
-                          <a href="/notice" class="dropdown-menu-link w-dropdown-link">                          Notice
-</a>
-                          <a href="/contact-pages/contact-v1" class="dropdown-menu-link w-dropdown-link">                          Contact One
-</a>
-                          <a href="/contact-pages/contact-v2" class="dropdown-menu-link w-dropdown-link">                          Contact Two
-</a>
-                        </nav>
-                      </div>
-                    </li>
-                    <li class="navigation-list-item">
-                      <div data-hover="false" data-delay="0" class="nav-link-dropdown w-dropdown">
-                        <div class="dropdown-toggle w-dropdown-toggle">
-                          <div class="dropdown-text">
-                            Utility Pages
-                          </div>
-                          <div class="menu-dropdown-arrow-icon w-icon-dropdown-toggle">
-                          </div>
-                        </div>
-                        <nav class="dropdown-menu-list w-dropdown-list">
-                          <a href="/utility-page/style-guide" class="dropdown-menu-link w-dropdown-link">                          Style Guide
-</a>
-                          <a href="https://template-maxion.webflow.io/404" class="dropdown-menu-link w-dropdown-link">                          404 Not Found
-</a>
-                          <a href="https://template-maxion.webflow.io/401" class="dropdown-menu-link w-dropdown-link">                          Password Protected
-</a>
-                          <a href="/utility-page/log-in" class="dropdown-menu-link w-dropdown-link">                          Log In
-</a>
-                          <a href="/utility-page/sign-up" class="dropdown-menu-link w-dropdown-link">                          Register
-</a>
-                          <a href="/utility-page/licenses" class="dropdown-menu-link w-dropdown-link">                          Licenses
-</a>
-                          <a href="/utility-page/changelog" class="dropdown-menu-link w-dropdown-link">                          Changelog
-</a>
-                        </nav>
-                      </div>
+                      <a href="/" aria-current="page" class="nav-link w-nav-link">Home</a>
                     </li>
                     <li class="navigation-list-item">
                       <a href="/courses" class="nav-link w-nav-link">Courses</a>
@@ -248,8 +185,10 @@
                       <a href="/university" class="nav-link w-nav-link">University</a>
                     </li>
                     <li class="navigation-list-item">
-                      <a href="/blog" class="nav-link w-nav-link">                      Blog
-</a>
+                      <a href="/blog" class="nav-link w-nav-link">Blog</a>
+                    </li>
+                    <li class="navigation-list-item">
+                      <a href="tel:+918800000000" class="nav-cta-btn w-button" style="background:#E85D26;color:#fff;padding:10px 22px;border-radius:6px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;">📞 Free Counseling</a>
                     </li>
                   </ul>
                 </nav>
@@ -287,52 +226,127 @@
           </div>
         </div>
       </div>
-      <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a22" class="home-two-hero-section">
+      <!-- ===== HERO SECTION ===== -->
+      <div class="home-two-hero-section" style="background:linear-gradient(135deg,#0D2B5E 0%,#1a4a8a 60%,#0D2B5E 100%);padding:52px 0 0 0;position:relative;overflow:hidden;">
         <div class="container-default">
-          <div class="slider-grid">
-            <div class="hero-item-content-wrap">
-              <div class="hero-item-content max-width-490">
-                <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a27" style="opacity:0" class="hero-icon-block mb22">
-                  <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e84ff_graduate-cap.png" loading="lazy" alt="graduate cap" class="hero-icon hero-icon-width-86" />
-                </div>
-                <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a29" style="opacity:0" class="hero-title-wrap">
-                  <p style="font-size:14px;font-weight:600;color:#f5a623;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">India's Top Reliable</p>
-                  <h1 class="display-10 color-secondary font-tb-38">
-                    We Simplify the Process of Earning an Online &amp; Distance Degree
-                  </h1>
-                </div>
-                <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a2c" style="opacity:0" class="hero-excerpt-wrap mb30">
-                  <p class="excerpt-big line-height-34 max-width-490 ml0">
-                    UGC-DEB approved programs from 30+ top universities. Expert counselors help you pick the right course — completely free.
-                    <strong>July 2026 admissions now open!</strong>
-                  </p>
-                </div>
-                <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a31" style="opacity:0" class="hero-button-wrap">
-                  <a href="/courses-pages/course-v1" class="button-primary-2 w-button">                  Get Started
-</a>
-                </div>
+          <div style="display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+            <!-- Left content -->
+            <div style="flex:1;min-width:280px;">
+              <p style="font-size:13px;font-weight:700;color:#E85D26;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">#India's Top Reliable</p>
+              <h1 style="font-size:2.4rem;font-weight:800;color:#ffffff;line-height:1.2;margin-bottom:16px;">
+                We Simplify the Process of<br/>Earning an <span style="color:#E85D26;">Online &amp; Distance</span> Degree
+              </h1>
+              <p style="color:#c8d8f0;font-size:1rem;line-height:1.7;margin-bottom:28px;">
+                UGC-DEB approved programs from 30+ top universities. Expert counselors help you pick the right course — completely free. <strong style="color:#fff;">July 2026 admissions open!</strong>
+              </p>
+              <!-- Search bar -->
+              <div style="display:flex;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.25);margin-bottom:24px;max-width:520px;">
+                <input type="text" placeholder="Search Course &amp; University e.g. MBA MCA BA BBA" style="flex:1;border:none;padding:14px 18px;font-size:15px;outline:none;color:#333;" />
+                <button style="background:#E85D26;color:#fff;border:none;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;">🔍 Search</button>
+              </div>
+              <!-- Quick links -->
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background 0.2s;">🎓 Top MBA Universities</a>
+                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">✅ UGC-DEB Approved 2026</a>
+                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">💻 Top MCA Universities</a>
+                <a href="/university" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">🏆 NIRF Ranked 2026</a>
               </div>
             </div>
-            <div data-w-id="c1f1a36b-6255-a3b1-4409-0cc4cb624a34" style="opacity:0" class="hero-item-image-wrap">
-              <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 991px) 330px, (max-width: 1279px) 450px, 570px" srcset="https://assets.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider-p-500.png 500w, https://assets.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider.png 570w" alt="Hero Image" class="home-two-hero-image" />
+            <!-- Right image -->
+            <div style="flex:0 0 auto;max-width:420px;width:100%;align-self:flex-end;">
+              <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider.png" loading="lazy" alt="Students" style="width:100%;max-height:340px;object-fit:contain;display:block;" />
             </div>
           </div>
         </div>
-        <div class="image-shape-group">
-          <div class="shape shape1">
-            <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8501_shape1.png" loading="lazy" alt="shape image" class="shape-image" />
-          </div>
-          <div class="shape shape-2">
-            <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8503_shape2.png" loading="lazy" alt="shape image" class="shape-image" />
-          </div>
-          <div class="shape shape3">
-            <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8505_shape3.png" loading="lazy" alt="shape image" class="shape-image" />
-          </div>
-          <div class="shape shape4">
-            <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8505_shape3.png" loading="lazy" alt="shape image" class="shape-image" />
-          </div>
-          <div class="shape shape5">
-            <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8507_shape4.png" loading="lazy" alt="shape image" class="shape-image" />
+        <!-- Free Counseling CTA bar -->
+        <div style="background:#E85D26;text-align:center;padding:14px 20px;margin-top:32px;cursor:pointer;">
+          <a href="tel:+918800000000" style="color:#fff;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:0.5px;">
+            📞 &nbsp;Book 100% Free Counseling Now — Talk to an Expert Today!
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== COURSE CATEGORIES ICON GRID ===== -->
+      <div style="padding:50px 20px;background:#fff;">
+        <div class="container-default">
+          <h2 style="text-align:center;font-size:1.7rem;font-weight:800;color:#0D2B5E;margin-bottom:8px;">Explore Our Courses</h2>
+          <p style="text-align:center;color:#666;margin-bottom:36px;font-size:1rem;">Choose from UG, PG, MBA &amp; more — UGC-DEB approved programs</p>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;" class="course-icon-grid">
+            <!-- Row 1 -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">💼</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MBA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">💻</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MCA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📊</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MCOM</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🎓</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🔬</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MSC</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📰</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MJMC</span>
+            </a>
+            <!-- Row 2 -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🏢</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BBA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🖥️</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BCA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🧾</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BCOM</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📚</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">⚗️</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BSC</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">⚖️</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">LLM</span>
+            </a>
+            <!-- Row 3 -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🏅</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">PGP</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📜</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">DIPLOMA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📋</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">CERTIFICATE</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📈</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">DBA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">👔</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">EMBA</span>
+            </a>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
+              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📡</div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BJMC</span>
+            </a>
           </div>
         </div>
       </div>
