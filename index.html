@@ -129,10 +129,23 @@
     @media (max-width: 600px) { .course-icon-grid { grid-template-columns: repeat(3,1fr) !important; } }
     @media (max-width: 400px) { .course-icon-grid { grid-template-columns: repeat(2,1fr) !important; } }
 
-    /* Hero responsive */
+    /* Hero two-column responsive */
+    @media (max-width: 960px) {
+      .hero-two-col { grid-template-columns: 1fr !important; gap: 36px !important; }
+      .hero-two-col > div:last-child { display: none; } /* hide right panel on mobile */
+    }
     @media (max-width: 768px) {
-      .home-two-hero-section > .container-default > div { flex-direction: column !important; }
-      .home-two-hero-section h1 { font-size: 1.7rem !important; }
+      .home-two-hero-section h1 { font-size: 1.9rem !important; }
+      .hero-stats-bar { grid-template-columns: repeat(2,1fr) !important; }
+    }
+    @media (max-width: 480px) {
+      .home-two-hero-section h1 { font-size: 1.55rem !important; }
+      .hero-stats-bar { grid-template-columns: repeat(2,1fr) !important; }
+    }
+    /* Pulse dot animation */
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
     }
 
     /* Ensure images never overflow */
@@ -227,40 +240,85 @@
         </div>
       </div>
       <!-- ===== HERO SECTION ===== -->
-      <div class="home-two-hero-section" style="background:linear-gradient(135deg,#0D2B5E 0%,#1a4a8a 60%,#0D2B5E 100%);padding:52px 0 0 0;position:relative;overflow:hidden;">
-        <div class="container-default">
-          <div style="display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+      <div class="home-two-hero-section" style="background:linear-gradient(135deg,#0a1f4e 0%,#0D2B5E 45%,#163a78 100%);padding:32px 0 0 0;position:relative;overflow:hidden;">
+        <!-- Subtle dot pattern overlay -->
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+        <div class="container-default" style="position:relative;z-index:1;">
+          <div style="display:grid;grid-template-columns:1fr 400px;gap:44px;align-items:center;" class="hero-two-col">
             <!-- Left content -->
-            <div style="flex:1;min-width:280px;">
-              <p style="font-size:13px;font-weight:700;color:#E85D26;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">#India's Top Reliable</p>
-              <h1 style="font-size:2.4rem;font-weight:800;color:#ffffff;line-height:1.2;margin-bottom:16px;">
-                We Simplify the Process of<br/>Earning an <span style="color:#E85D26;">Online &amp; Distance</span> Degree
+            <div>
+              <!-- Badge -->
+              <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,93,38,0.15);border:1px solid rgba(232,93,38,0.4);border-radius:20px;padding:5px 14px;margin-bottom:12px;">
+                <span style="width:8px;height:8px;background:#E85D26;border-radius:50%;display:inline-block;animation:pulse-dot 1.5s infinite;"></span>
+                <span style="font-size:12px;font-weight:700;color:#E85D26;letter-spacing:1.5px;text-transform:uppercase;">#India's Top Reliable Education Portal</span>
+              </div>
+              <!-- Heading -->
+              <h1 style="font-size:2.3rem;font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px;">
+                Simplify Your Path to an<br/><span style="color:#E85D26;">Online &amp; Distance</span> Degree
               </h1>
-              <p style="color:#c8d8f0;font-size:1rem;line-height:1.7;margin-bottom:28px;">
-                UGC-DEB approved programs from 30+ top universities. Expert counselors help you pick the right course — completely free. <strong style="color:#fff;">July 2026 admissions open!</strong>
+              <!-- Subtext -->
+              <p style="color:#b8cde8;font-size:0.97rem;line-height:1.65;margin-bottom:16px;max-width:500px;">
+                UGC-DEB approved programs from <strong style="color:#fff;">30+ top universities.</strong> Our expert counselors help you choose the right course — <strong style="color:#fff;">100% free</strong>. July 2026 admissions are open!
               </p>
               <!-- Search bar -->
-              <div style="display:flex;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.25);margin-bottom:24px;max-width:520px;">
-                <input type="text" placeholder="Search Course &amp; University e.g. MBA MCA BA BBA" style="flex:1;border:none;padding:14px 18px;font-size:15px;outline:none;color:#333;" />
-                <button style="background:#E85D26;color:#fff;border:none;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;">🔍 Search</button>
+              <div style="display:flex;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);margin-bottom:14px;max-width:540px;">
+                <span style="display:flex;align-items:center;padding:0 14px;color:#999;">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#999" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </span>
+                <input type="text" placeholder="Search e.g. MBA, MCA, BBA, Distance Education…" style="flex:1;border:none;padding:12px 8px;font-size:14px;outline:none;color:#333;background:transparent;" />
+                <button style="background:#E85D26;color:#fff;border:none;padding:0 28px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;letter-spacing:0.3px;">Search</button>
               </div>
-              <!-- Quick links -->
-              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
-                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background 0.2s;">🎓 Top MBA Universities</a>
-                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">✅ UGC-DEB Approved 2026</a>
-                <a href="/courses" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">💻 Top MCA Universities</a>
-                <a href="/university" style="background:rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">🏆 NIRF Ranked 2026</a>
+              <!-- Quick links — single row, no wrap -->
+              <div style="display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;">
+                <a href="/courses" style="background:rgba(255,255,255,0.1);color:#e0ecff;padding:7px 15px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.18);white-space:nowrap;flex-shrink:0;">Top MBA Universities</a>
+                <a href="/courses" style="background:rgba(255,255,255,0.1);color:#e0ecff;padding:7px 15px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.18);white-space:nowrap;flex-shrink:0;">UGC-DEB Approved 2026</a>
+                <a href="/courses" style="background:rgba(255,255,255,0.1);color:#e0ecff;padding:7px 15px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.18);white-space:nowrap;flex-shrink:0;">Top MCA Universities</a>
+                <a href="/university" style="background:rgba(255,255,255,0.1);color:#e0ecff;padding:7px 15px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.18);white-space:nowrap;flex-shrink:0;">NIRF Ranked 2026</a>
               </div>
             </div>
-            <!-- Right image -->
-            <div style="flex:0 0 auto;max-width:420px;width:100%;align-self:flex-end;">
-              <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider.png" loading="lazy" alt="Students" style="width:100%;max-height:340px;object-fit:contain;display:block;" />
+            <!-- Right panel — stats card + image -->
+            <div style="position:relative;">
+              <!-- Student image -->
+              <div style="border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1a4080,#0a1f4e);padding:24px 24px 0 24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+                <img src="https://cdn.prod.website-files.com/649189cd213c45a9d650f194/64929042c63f0d96605e8509_hero-slider.png" alt="Students" style="width:100%;display:block;border-radius:12px 12px 0 0;" />
+              </div>
+              <!-- Floating trust badge -->
+              <div style="position:absolute;top:20px;right:-12px;background:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.2);min-width:140px;">
+                <div style="font-size:22px;font-weight:900;color:#0D2B5E;line-height:1;">30+</div>
+                <div style="font-size:12px;color:#666;font-weight:600;margin-top:2px;">UGC-DEB Universities</div>
+              </div>
+              <!-- Floating counseling badge -->
+              <div style="position:absolute;bottom:30px;left:-16px;background:#E85D26;border-radius:12px;padding:12px 16px;box-shadow:0 8px 24px rgba(232,93,38,0.4);min-width:150px;">
+                <div style="font-size:22px;font-weight:900;color:#fff;line-height:1;">Free</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.85);font-weight:600;margin-top:2px;">Expert Counseling</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust stats bar -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-top:24px;" class="hero-stats-bar">
+            <div style="background:rgba(255,255,255,0.05);padding:12px 24px;text-align:center;">
+              <div style="font-size:1.3rem;font-weight:900;color:#fff;">30+</div>
+              <div style="font-size:11px;color:#90aed4;font-weight:500;margin-top:2px;">Top Universities</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:12px 24px;text-align:center;">
+              <div style="font-size:1.3rem;font-weight:900;color:#fff;">50,000+</div>
+              <div style="font-size:11px;color:#90aed4;font-weight:500;margin-top:2px;">Students Enrolled</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:12px 24px;text-align:center;">
+              <div style="font-size:1.3rem;font-weight:900;color:#fff;">100%</div>
+              <div style="font-size:11px;color:#90aed4;font-weight:500;margin-top:2px;">Free Counseling</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:12px 24px;text-align:center;">
+              <div style="font-size:1.3rem;font-weight:900;color:#fff;">UGC-DEB</div>
+              <div style="font-size:11px;color:#90aed4;font-weight:500;margin-top:2px;">Approved Programs</div>
             </div>
           </div>
         </div>
+
         <!-- Free Counseling CTA bar -->
-        <div style="background:#E85D26;text-align:center;padding:14px 20px;margin-top:32px;cursor:pointer;">
-          <a href="tel:+918800000000" style="color:#fff;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:0.5px;">
+        <div style="background:#E85D26;text-align:center;padding:15px 20px;margin-top:40px;">
+          <a href="tel:+918800000000" style="color:#fff;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:0.3px;">
             📞 &nbsp;Book 100% Free Counseling Now — Talk to an Expert Today!
           </a>
         </div>
@@ -272,80 +330,116 @@
           <h2 style="text-align:center;font-size:1.7rem;font-weight:800;color:#0D2B5E;margin-bottom:8px;">Explore Our Courses</h2>
           <p style="text-align:center;color:#666;margin-bottom:36px;font-size:1rem;">Choose from UG, PG, MBA &amp; more — UGC-DEB approved programs</p>
           <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;" class="course-icon-grid">
-            <!-- Row 1 -->
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">💼</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MBA</span>
+            <!-- Row 1 — blue bg -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2210/2210152.png" alt="MBA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MBA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">💻</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MCA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2920/2920280.png" alt="MCA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MCA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📊</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MCOM</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="MCOM" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MCOM</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🎓</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048945.png" alt="MA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🔬</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MSC</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="MSC" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MSC</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📰</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">MJMC</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#EBF2FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/3437/3437364.png" alt="MJMC" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">MJMC</span>
             </a>
-            <!-- Row 2 -->
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🏢</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BBA</span>
+            <!-- Row 2 — peach bg -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/3048/3048122.png" alt="BBA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BBA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🖥️</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BCA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/4727/4727424.png" alt="BCA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BCA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🧾</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BCOM</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="BCOM" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BCOM</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📚</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2702/2702134.png" alt="BA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">⚗️</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BSC</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2821/2821083.png" alt="BSC" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BSC</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#FFF3EB;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">⚖️</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">LLM</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#FFF0E6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/948/948078.png" alt="LLM" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">LLM</span>
             </a>
-            <!-- Row 3 -->
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">🏅</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">PGP</span>
+            <!-- Row 3 — mint bg -->
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2583/2583385.png" alt="PGP" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">PGP</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📜</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">DIPLOMA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2659/2659360.png" alt="DIPLOMA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">DIPLOMA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📋</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">CERTIFICATE</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1183/1183446.png" alt="CERTIFICATE" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">CERTIFICATE</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📈</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">DBA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1058/1058278.png" alt="DBA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">DBA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">👔</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">EMBA</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/921/921820.png" alt="EMBA" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">EMBA</span>
             </a>
-            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:20px 10px;border:1.5px solid #e8eef6;border-radius:10px;text-decoration:none;transition:box-shadow 0.2s,border-color 0.2s;background:#fff;">
-              <div style="width:52px;height:52px;background:#EBF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:24px;">📡</div>
-              <span style="font-weight:700;color:#0D2B5E;font-size:14px;">BJMC</span>
+            <a href="/courses" class="course-icon-card" style="display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;border:1.5px solid #e8eef6;border-radius:12px;text-decoration:none;background:#fff;">
+              <div style="width:66px;height:66px;background:#E8F8EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="BJMC" width="36" height="36" />
+              </div>
+              <span style="font-weight:700;color:#0D2B5E;font-size:13px;letter-spacing:0.5px;">BJMC</span>
             </a>
           </div>
         </div>
